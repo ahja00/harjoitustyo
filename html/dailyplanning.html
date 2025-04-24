@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/"/>
+    <title>Daily Planning</title>
+</head>
+<body>
+ 
+
+    <style>
+        body {
+            background: url('../images/sparkle.jpg') no-repeat center center fixed;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .day {
+            padding: 20px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+        .day:hover {
+            background-color: rgb(216, 159, 192);
+        }
+        .note-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(231, 174, 231, 0.959);
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .note-box textarea {
+            width: 100%;
+            height: 100px;
+        }
+        .close-btn {
+            background: rgba(231, 174, 231, 0.959);
+            color: white;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1> Family Calendar</h1>
+    <div id="calendar" class="calendar"></div>
+
+    <div id="noteBox" class="note-box">
+        <h3 id="noteDate"></h3>
+        <textarea id="noteText"></textarea>
+        <br>
+        <button onclick="saveNote()">Save</button>
+        <button class="close-btn" onclick="closeNote()">Close</button>
+    </div>
+    <div class="back-menu-wrapper">
+        <a href="mainmenu.html" class="back-to-menu-btn">← Back to the Menu</a>
+    </div>
+    <script>
+        const calendar = document.getElementById("calendar");
+        const noteBox = document.getElementById("noteBox");
+        const noteDate = document.getElementById("noteDate");
+        const noteText = document.getElementById("noteText");
+
+        let selectedDate = "";
+
+        function createCalendar() {
+            calendar.innerHTML = "";
+            const daysInMonth = new Date(2024, 3, 0).getDate(); 
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement("div");
+                dayElement.classList.add("day");
+                dayElement.textContent = day;
+                dayElement.onclick = () => openNote(day);
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        function openNote(day) {
+            selectedDate = `2024-04-${day}`; 
+            noteDate.textContent = `Note ${selectedDate}`;
+            noteText.value = localStorage.getItem(selectedDate) || "";
+            noteBox.style.display = "block";
+        }
+
+        function saveNote() {
+            localStorage.setItem(selectedDate, noteText.value);
+            noteBox.style.display = "none";
+        }
+
+        function closeNote() {
+            noteBox.style.display = "none";
+        }
+
+        createCalendar();
+    </script>
+</body>
+</html>

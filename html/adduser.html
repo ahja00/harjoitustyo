@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style1.css">
+    <title>Add a User</title>
+</head>
+<body>
+    
+    <!-- Modal for Add User -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addUserModal')">&times;</span>
+            <h2>Add User</h2>
+            <form id="add-user-form">
+                <div class="input-box">
+                    <input type="text" id="username" placeholder="Username" required><br>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="email" placeholder="Email" required><br>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" placeholder="Password" required><br>
+                </div>
+                <div class="input-box">
+                    <button type="submit">Add User</button>
+                </div>
+            </form>
+            <div class="input-box">
+                <div class="back-menu-wrapper">
+                    <a href="../html/usermanagement.html" class="back-to-menu-btn">← Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+       
+        document.getElementById('add-user-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+           
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            
+            if (users.find(user => user.username === username)) {
+                alert('Username is already in use.');
+                return;
+            }
+
+           
+            users.push({ username, email, password });
+
+            
+            localStorage.setItem('users', JSON.stringify(users));
+
+            
+            closeModal('addUserModal');
+
+            
+            alert('User added successfully!');
+            window.location.href = 'usermanagement.html'; 
+        });
+
+       
+        document.getElementById('addUserModal').style.display = 'block';
+    </script>
+
+</body>
+</html>

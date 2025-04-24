@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style1.css">
+    <title>Delete a User</title>
+</head>
+<body>
+    <!-- Modal for Delete User -->
+    <div id="deleteUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deleteUserModal')">&times;</span>
+            <h2>Delete User</h2>
+            <form id="delete-user-form">
+                <div class="input-box">
+                    <input type="text" id="delete-username" placeholder="Username to delete" required><br>
+                </div>
+                <button type="submit">Delete User</button>
+                <div class="back-menu-wrapper">
+                    <a href="../html/usermanagement.html" class="back-to-menu-btn">← Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+   
+    document.getElementById('deleteUserModal').style.display = 'block';
+
+   
+    document.getElementById('delete-user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('delete-username').value.trim();
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const updatedUsers = users.filter(u => u.username !== username);
+
+        if (users.length === updatedUsers.length) {
+            alert('User not found.');
+            return;
+        }
+
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        alert('KUser deleted successfully!');
+        window.location.href = 'usermanagement.html';
+    });
+</script>
+
+</body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style1.css">
+    <title>Edit a User Details</title>
+</head>
+<body>
+
+<!-- Modal for Edit User -->
+<div id="editUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('editUserModal')">&times;</span>
+        <h2>Edit User</h2>
+        <form id="edit-user-form">
+            <div class="input-box">
+                <input type="text" id="edit-username" placeholder="Username" required><br>
+            </div>
+            <div class="input-box">
+                <input type="email" id="edit-email" placeholder="New Email"><br>
+            </div>
+            <div class="input-box">
+                <input type="password" id="edit-password" placeholder="New Password"><br>
+            </div>
+            <div class="input-box">
+                <button type="submit">Edit User</button>
+            </div>
+            <div class="back-menu-wrapper">
+                <a href="../html/usermanagement.html" class="back-to-menu-btn">← Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Show modal on load
+    document.getElementById('editUserModal').style.display = 'block';
+
+   
+    document.getElementById('edit-user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('edit-username').value;
+        const newEmail = document.getElementById('edit-email').value;
+        const newPassword = document.getElementById('edit-password').value;
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let userIndex = users.findIndex(u => u.username === username);
+
+        if (userIndex === -1) {
+            alert('User not found.');
+            return;
+        }
+
+        
+        if (newEmail) users[userIndex].email = newEmail;
+        if (newPassword) users[userIndex].password = newPassword;
+
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('User information updated!');
+        window.location.href = 'usermanagement.html';
+    });
+</script>
+
+</body>
+</html>

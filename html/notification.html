@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Settings</title>
+    <link rel="stylesheet" href="../css/style1.css">
+    <script>
+        window.onload = () => {
+            
+            document.getElementById('email-notifications').checked = localStorage.getItem('emailNotifications') === 'true';
+            document.getElementById('sms-notifications').checked = localStorage.getItem('smsNotifications') === 'true';
+        };
+
+        function saveSettings(event) {
+            event.preventDefault();
+            const email = document.getElementById('email-notifications').checked;
+            const sms = document.getElementById('sms-notifications').checked;
+
+            localStorage.setItem('emailNotifications', email);
+            localStorage.setItem('smsNotifications', sms);
+
+            alert("Notification settings saved!");
+        }
+    </script>
+</head>
+<body>
+    <div class="menu-box">
+        <h2>Notification Settings</h2>
+        <form onsubmit="saveSettings(event)">
+            <div class="input-box">
+                <label>
+                    <input type="checkbox" id="email-notifications" name="email-notifications">
+                    Enable Email Notifications
+                </label>
+            </div>
+            <div class="input-box">
+                <label>
+                    <input type="checkbox" id="sms-notifications" name="sms-notifications">
+                    Enable SMS Notifications
+                </label>
+            </div>
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+        <div class="back-menu-wrapper">
+            <a href="usermanagement.html" class="back-to-menu-btn">← Back</a>
+        </div>
+    </div>
+</body>
+</html>
