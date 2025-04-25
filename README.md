@@ -1,10 +1,19 @@
+Sovelluksen käyttöönotto:
+1.git clone
+2. avaa visual studio codessa
+3. suorita nmp install
+4. laita API -avain joka löytyy wordista niin tuohon electricrobot.py kohtaan "price_endpoint".
+4. suorita python electricrobot.py (tämä luo status.json tiedoston ja toimii electricrobot.html-,electricrobot.py- ja electricrobot.js-tiedostojen kanssa yhdessä.)
+5. avaa login.html liveserverin kautta (sillä electricrobot ei anna tietoja muuten. Muihin juttuihin pitäisi toimia ilman liveserveriä.)
 
+
+TIETOA
 Harjoitustyö: 
 Arjen organisointisovellus
 
 Tässä on HTML-pohjainen sovellus, jonka tavoitteena on tehdä arjesta helpompaa ja järjestelmällisempää, siivouksen, kaupassakäynnin ja perheen ajanhallinnan osalta. Sovellus auttaa käyttäjiä pitämään tärkeät asiat listattuna ja muistettuna, ja tukee myös yhteistä aikataulujen hallintaa.
 
-Sovelluksessa käyttäjät voivat kirjautua sisään, rekisteröityä, hallita erilaisia listoja, kuten ostos- ja siivouslistoja, sekä kirjata muistiinpanoja perheen kalenteriin. Tavoitteena on tehdä arjesta sujuvampaa ja helpompaa, koska tässä sovelluksessa on mahdollisuus ottaa käyttöön ilmoitukset SMS:llä tai sähköpostilla, niin se helpottaa esim. siivoushommien muistamista perheen sisällä.
+Sovelluksessa käyttäjät voivat kirjautua sisään, rekisteröityä, hallita erilaisia listoja, kuten ostos- ja siivouslistoja, sekä kirjata muistiinpanoja perheen kalenteriin, sekä seurata sähkönhintaa. Tavoitteena on tehdä arjesta sujuvampaa ja helpompaa, koska tässä sovelluksessa on mahdollisuus ottaa käyttöön ilmoitukset SMS:llä tai sähköpostilla, niin se helpottaa esim. siivoushommien muistamista perheen sisällä.
 
 Toiminnallisuudet:
 1. Kirjautuminen ja rekisteröityminen
@@ -25,6 +34,9 @@ Tässä osiossa voit lisätä, poistaa ja muokata käyttäjiä. Tämä on hyvä 
 
 Daily Planner (Perheen aikataulu)
 Tässä osiossa voit lisätä tärkeitä tehtäviä ja muistutuksia kalenteriin. Näin kaikki perheenjäsenet voivat nähdä päivän suunnitelmat ja tehtävät yhdessä paikassa. Aikataulut voi jakaa helposti ja varmistaa, ettei mikään tärkeä asia jää huomiotta.(ja back to menu)
+
+Electric Robot (sähköbotti)
+Tämä hakee pörssisähkö.net -sivustolta sähkönhinnan, ja kertoo milloin kannattaa pyykätä.
 
 Logout (Uloskirjautuminen)
 Voit kirjautua ulos sovelluksesta.
@@ -53,5 +65,7 @@ Ajatuksena olisi, että tässä onnistuisi myöhemmin:
 
 
 (Sovellus avataan login.html tiedostosta. Josta pitäisi onnistua etenemään.)
+
+Olen käyttänyt shoppinglistaan tutorialia, ja tein samalla tyylillä myös cleaning listin. Ne piti muokata, jotta on erillisiä listoja. tutorial: https://www.youtube.com/watch?v=3OqWCGVaOkA
 
 -Janika Ahonen
